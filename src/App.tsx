@@ -3,6 +3,7 @@ import React, {useState}from 'react';
 import CreateTodo from './components/CreateTodo';
 import TodoList from './components/TodoList';
 import {Todo} from './todo.model'
+
  
 
 function App() {
@@ -17,10 +18,16 @@ function App() {
     ])
   }
 
+  const todoDeleteHandler = (todoId: string) => {
+    setTodos(prev => {
+      return prev.filter(todo => todo.id !== todoId)
+    })
+  }
+
   return (
     <div> 
       <CreateTodo onAddTodo={todoAddHandler}/> 
-      <TodoList items={todos}/>
+      <TodoList items={todos} onDeleteTodo={todoDeleteHandler}/>
     </div>
   );
 } 

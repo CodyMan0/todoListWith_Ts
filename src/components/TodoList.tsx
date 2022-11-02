@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface TodoListProps {
-  items: {id: string, text: string}[]
+  items: {id: string, text: string}[];
+  onDeleteTodo:(id:string)=>void;
 }
 
-const TodoList = ({items}:TodoListProps) => {
+const TodoList = ({items, onDeleteTodo}:TodoListProps) => {
 
+useEffect();
   return <ul>
-    {items.map(item => (<li key={item.id}>{item.text}</li>))}
+    {items.map(item => (<li key={item.id}>
+      <span>{item.text}</span>
+      <button onClick={onDeleteTodo.bind(null,item.id)}>Delete</button>
+      </li>))} 
   </ul>
 
 }
